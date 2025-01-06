@@ -14,5 +14,5 @@ public class PurchaseVO {
 	boolean canceled;
 	long amount;
 	
-	List<PurchaseItemDTO> purchaseItems; 
+	List<PurchaseItemVO> purchaseItems; 
 }

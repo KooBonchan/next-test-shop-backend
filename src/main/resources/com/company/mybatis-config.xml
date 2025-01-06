@@ -3,6 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-
+    <typeAlias type="com.company.domain.MemberVO" alias="Member"/>
+    <typeAlias type="com.company.domain.ItemVO" alias="Item"/>
 	</typeAliases>
 </configuration>
