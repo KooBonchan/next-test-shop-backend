@@ -5,4 +5,39 @@
 	<select id="findAll" resultType="Item">
 		SELECT * FROM item
 	</select>
+	<select id="findByIdx" parameterType="long" resultType="Item">
+		SELECT * FROM item WHERE idx = #{idx}
+	</select>
+
+	<insert id="insert"
+	  useGeneratedKeys="true" keyColumn="idx" keyProperty="idx"
+	  parameterType="Item">
+	  INSERT INTO item
+	  (name, baseImgUrl, shortDesc, longDesc, originalPrice, price, stock, providerIdx)
+	  VALUES
+	  (#{name}, #{baseImgUrl}, #{shortDesc}, #{longDesc}, #{originalPrice}, #{price}, #{stock}, #{providerIdx})
+	</insert>
+	<update id="update" parameterType="Item">
+	 UPDATE item SET
+	 <if test="baseImgUrl != null">
+	 baseImgUrl = #{baseImgUrl},
+	 </if>
+	 shortDesc = #{shortDesc},
+	 longDesc = #{longDesc},
+	 originalPrice = #{originalPrice},
+	 price = #{price},
+	 stock = #{stock}
+	 WHERE idx = #{idx} and providerIdx = #{providerIdx} 	
+	</update>
+	<update id="reduceItemQuantity">
+	 UPDATE item SET
+	 stock = stock - #{quantity}
+	 WHERE idx = #{idx}
+	</update>
+	
+	<delete id="delete" parameterType="Item">
+	 DELETE FROM item
+	 WHERE idx = #{idx} and providerIdx = #{providerIdx}
+	</delete>
+
 </mapper>
